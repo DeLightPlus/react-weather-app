@@ -1,12 +1,13 @@
 .main-weather-card {
     /* flex: 1; */
-    max-width: 640px;
+    max-width: 580px;
     /* max-height: 300px; */
 
     display: flex;
     flex-direction: column;
     background-color: var(--color-background, );
     box-shadow: var(--shadow);
+    font-family: 'Exo', sans-serif;
 }
 
 .main-weather-card .temp-N-other-details {
@@ -26,30 +27,29 @@
     color: azure;
     margin-bottom: 8px;
     padding-left: 16px;
-    font-family: Segoe Sans, Segoe UI, Segoe WP, Arial, Sans-Serif;
+    font-family: 'Exo', sans-serif, Segoe WP, Arial;
 }
 
 .temp-N-alerts {
     display: flex;
     align-items: center;
     gap: 8px;
+    backdrop-filter: blur(50px);   
 }
 
 .temp-N-other-details .temp-N-clouds {
     width: 320px;
     height: 187px;
     padding: 16px 32px 16px 36px;
-    background: rgba(255, 255, 255, 0.1);
+
     backdrop-filter: blur(10px);
     border-radius: 12px;
-
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     color: #fff;
 
     display: flex;
     align-items: center;
-    font-family: Segoe Sans, Segoe UI, Segoe WP, Arial, Sans-Serif;
-
+    font-family: 'Exo', sans-serif, Segoe WP, Arial;
 }
 
 .temp-N-clouds .cloud-des {
@@ -83,15 +83,15 @@
 
 .feels-like {
     margin-left: 8px;
-    padding: 0 0 16px 16px;
+    padding: 0 0 32px 16px;
 }
 
 .feels-like .temp {
     display: flex;
     align-items: center;
     text-align: start;
-    font-size: 48px;
-    font-weight: 400;
+    font-size: 52px;
+    font-weight: 600;
     color: #fff;
 }
 
@@ -110,8 +110,6 @@
     font-size: 11px;
 }
 
-
-
 .highligts-container {
     display: flex;
     flex-direction: column;
@@ -125,7 +123,6 @@
     border-top-left-radius: 0;
     /* border-top-right-radius: 0; */
 }
-
 
 .highlights {
     display: flex;
@@ -143,7 +140,7 @@
     border-radius: 0px;
     background-color: rgba(255, 255, 255, 0);
 
-
+    font-family: 'Exo', sans-serif, Segoe WP, Arial;
 }
 
 .bold {
@@ -164,8 +161,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    font-family: Segoe Sans, Segoe UI, Segoe WP, Arial, Sans-Serif;
+    align-items: center;  
 
     color: var(--color-background, #001e41);
     text-align: center;
@@ -186,11 +182,21 @@
 @media (max-width: 480px) { 
     
     .main-weather-card {
-        /* height: fit-content; */
+        
+    }
+
+    .temp-N-alerts .temp-N-clouds{
+        width: 100%;
+        height: max-content;
+        padding: 8px 32px 8px 36px;
     }
 
     .temp-N-other-details{
-        /* height: fit-content; */
+        width: 100%;
+    }
+
+    .highligts-container{
+        width: 100%;
     }
 .temp-N-alerts {
     flex-direction: column-reverse;  

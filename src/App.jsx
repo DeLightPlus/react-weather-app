@@ -16,6 +16,24 @@ import ClockHero from './components/ClockHero/ClockHero.jsx';
 import SetDefaultLocationModal from './components/Modals/SetDefaultLocationModal.jsx';
 
 import { useAppContext } from './context/AppContext.jsx';
+import Sidebar from './components/Sidebar/Sidebar.jsx';
+import { useEffect, useRef, useState } from 'react';
+import AdOrNewsCard from './components/Cards/AdPlaceholder/AdOrNewsCard.jsx';
+import SmartFeeds from './components/NewsFeeds/SmartFeeds.jsx';
+
+
+const newsList = [
+  {
+    title: 'Storm in Texas',
+    description: 'Heavy rainfall expected over the weekend.',
+    url: 'https://example.com/storm-texas',
+  },
+  {
+    title: 'Heatwave Alert',
+    description: 'Temperatures may reach 40°C this week.',
+    url: 'https://example.com/heatwave-alert',
+  },
+];
 
 const WeatherApp = () => {
   const {
@@ -26,6 +44,22 @@ const WeatherApp = () => {
     handleSearch, handleRemoveLocation, handleSelectLocation, handleCurrentLocation,
     defaultLocation, handleSetDefaultLocation
   } = useAppContext();
+
+  const heroRef = useRef();
+  const [isAtHero, setIsAtHero] = useState(true);
+
+  const getRandomNews = () => newsList[Math.floor(Math.random() * newsList.length)];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsAtHero(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, []); 
+
+ 
 
   // Show modal if no default location
   if (!defaultLocation) {
@@ -50,10 +84,11 @@ const WeatherApp = () => {
         setShowTermsOfService={setShowTermsOfService}
         onCurrentLocation={handleCurrentLocation}
         isLoadingLocation={isLoadingLocation}
+        isAtHero={isAtHero}
       />
 
       <div className="app-content">
-        <div className="app-sidebar"></div>
+        <Sidebar/>
 
         <div className="app-main">
           <div className="main-header">
@@ -75,7 +110,10 @@ const WeatherApp = () => {
             </div>
             }
           </div>
-          <ClockHero />
+          
+          <section ref={heroRef} className="clock-hero">
+            <ClockHero isAtHero={isAtHero}/>
+          </section>
 
           <div className="main-body-weather">
             {weatherData ? (
@@ -84,7 +122,10 @@ const WeatherApp = () => {
                   weatherData={weatherData} 
                   forecastData={forecastData}
                 />
-                <WeatherMap location={weatherData.coord} />
+                <div className='map-N-ad'> 
+                  <WeatherMap location={weatherData.coord} />
+                  <AdOrNewsCard />
+                </div>
               </>              
             ) : (
               <div className="loading-wrapper">
@@ -101,7 +142,12 @@ const WeatherApp = () => {
                 <SkeletonLoader />
               </div>
             )}
-            {forecastData && <Forecast forecastData={forecastData} />}
+
+            {forecastData && <Forecast forecastData={forecastData} />}            
+            
+            {weatherData && <SmartFeeds limit={2} startIndex={0} />}
+            
+              
           </div>
         </div>
       </div>

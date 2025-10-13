@@ -1,7 +1,7 @@
 .search {
   position: relative;
   width: 100%;
-  max-width: 300px;
+  max-width: 256px;
   margin: 0;
 }
 
@@ -11,7 +11,7 @@
   background: var(--background-color);
   border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
   border-radius: 12px;
-  padding: 0.3rem 1rem;
+  padding: 0.25rem 0.5rem;
   transition: all 0.3s ease;
 }
 
@@ -33,7 +33,7 @@
   color: var(--text-color);
   font-size: 1rem;
   outline: none;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
 }
 
 .search__input::placeholder {

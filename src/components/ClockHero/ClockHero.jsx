@@ -1,11 +1,18 @@
 // components/ClockHero.jsx
-import React, { useState, useEffect } from 'react';
-import moment from 'moment-timezone';
+import { useState, useEffect, useRef } from 'react';
 import { Sunrise, Sunset, ThermometerSun } from 'lucide-react';
+import moment from 'moment-timezone';
+
+import { MapProvider , World} from '@yanikemmenegger/react-world-map';
+// import World from '@yanikemmenegger/react-world-map';
+
+
+
 import './ClockHero.css';
 import { useAppContext } from '../../context/AppContext.jsx';
+import { useScroll, useTransform, motion } from 'framer-motion';
 
-const ClockHero = () => {
+const ClockHero = ({isAtHero}) => {
   const {
     weatherData,
     tempUnits,
@@ -57,15 +64,27 @@ const ClockHero = () => {
     : false;
 
   return (
-    <section className="clock-hero">
-      <div className="clock-hero__content">
+    <>
+      <div className={`clock-hero__map-container ${!isAtHero ? 'atHero' : ''}`}>
+            <MapProvider
+              initialFillColors={{ US: 'red', JP: 'red', ZA: 'green' }}
+              defaultFillColor="#cccccc"
+              defaultFillType="color"
+            >
+              <World controls={false} className="world-map" />
+            </MapProvider>
+          </div>
+      <div  className="clock-hero__content">            
+          
+
         <p className="clock-hero__location">
           Time in <span>
             {weatherData?.name || defaultLocation?.cityName || selectedWorldClock?.cityName}
           </span>
           , {defaultLocation?.country || selectedWorldClock?.country} currently
         </p>
-        <h2 className="clock-hero__time">{time}</h2>
+        <h2 className="clock-hero__time">{time}</h2>   
+
         <p className="clock-hero__date">{date}</p>
         <div className="clock-hero__info-row">
           <span><Sunrise size={18} /> {sunrise}</span>
@@ -119,8 +138,12 @@ const ClockHero = () => {
             );
           })}
         </div>
+
+       
+
       </div>
-    </section>
+    </>
+   
   );
 };
 

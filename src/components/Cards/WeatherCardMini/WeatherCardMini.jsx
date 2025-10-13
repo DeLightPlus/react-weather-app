@@ -1,6 +1,7 @@
 import React from 'react'
 import './WeatherCardMini.css'
 import weatherIcons from '../../constants.js'
+import { EllipsisVertical } from 'lucide-react';
 
 const WeatherCardMini = ({ name, weather, onRemove, onSelect }) => {
     const handleMenuClick = (e) => {
@@ -20,7 +21,7 @@ const WeatherCardMini = ({ name, weather, onRemove, onSelect }) => {
                 <p>{weather?.main?.temp ? `${Math.round(weather.main.temp)}°C` : '--'}</p>
             </div>
             <div className="card__menu">
-                <button onClick={handleMenuClick}>⁝</button>
+                <button onClick={handleMenuClick}><EllipsisVertical /></button>
             </div>
         </div>
     )

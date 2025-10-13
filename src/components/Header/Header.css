@@ -7,10 +7,12 @@
   background: linear-gradient(135deg, #1e3b72f5 0%, #2a5298f8 100%,  #1e3b72f5 0%);
   backdrop-filter: blur(10px);
   color: var(--text-color);
-  padding: 1rem 2rem 0.25rem 4rem;
+  padding: 0.5rem 2rem 0.125rem 4rem;
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
   position: relative;
   z-index: 10;
+
+  font-family: 'Exo', sans-serif;
 }
 
 .header__brand {
@@ -28,27 +30,35 @@
 }
 
 .header__title {
+  display: flex;
+  gap: 2px;
+  align-items: center;
   background-color: aliceblue;  
   color: #1e3b72f5;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 400;
   /* text-decoration: underline; */
-
+  font-family: 'Orbitron', sans-serif;
   margin: 0;
-  padding: 1rem;
-  border-bottom-left-radius: 1.75rem;
+  padding: 0.75rem;
+  border-bottom-left-radius: 1.5rem;
+  
+}
 
-
+.header__title span{
+  
+  font-weight: 700;
 }
 
 .header__datetime {
-  padding-top: 0.25rem;
+  padding-top: 0.5rem;
   margin-bottom: 0.125rem;
   padding-right: 0.5rem;
 
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.7);
   font-weight: 400;
+  line-height: 1.5;
 }
 
 .header__menu-button {
@@ -100,6 +110,7 @@
   font-size: 0.8rem;
   white-space: nowrap;
   transition: visibility 0.2s;
+  z-index: 20;
 }
 
 .header__settings-button:hover .header__tooltip {
@@ -143,7 +154,11 @@
 
 @media (max-width: 768px) {
   .header {
-    padding: 1rem;
+    padding: 0rem 0.25rem 0.06125rem 1rem
+  }
+
+  .header__datetime{
+    font-size: 0.7rem;
   }
 
   .header__menu-button {
@@ -152,7 +167,15 @@
 
   .header__brand {
     flex: 1;
+    margin-left: 0;
+    padding-top: 1.7rem;
   }
+
+  .header__title {   
+    font-size: 1.25rem;    
+    padding: 0.75rem;
+    border-bottom-left-radius: 1.5rem;
+}
 
   .header__nav {
     display: none;

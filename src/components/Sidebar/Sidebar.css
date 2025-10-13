@@ -1,0 +1,56 @@
+/* Sidebar.css */
+.sidebar {   
+ 
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100vh;
+  display: flex;
+  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  transition: width 0.3s ease;
+}
+
+.sidebar.expanded {
+  width: 240px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  padding: 12px;
+  margin: 4px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.label {
+  margin-left: 12px;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+}
+
+.sidebar.expanded .label {
+  opacity: 1;
+}
+
+/* Dark mode override (optional) */
+.sidebar.dark .nav-btn:hover,
+.sidebar.dark .nav-btn.active {
+  background: rgba(255, 255, 255, 0.3);
+}

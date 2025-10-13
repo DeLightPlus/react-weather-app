@@ -1,6 +1,9 @@
 import { useState, useCallback } from 'react';
-import { ArrowRight, GlobalSearch } from 'iconsax-react';
+
+
 import './Search.css';
+import { Globe, MoveRight } from 'lucide-react';
+// import { Global } from 'iconsax-react';
 
 const Search = ({ onSearch, recentSearches = [] }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,8 +25,8 @@ const Search = ({ onSearch, recentSearches = [] }) => {
 
   return (
     <div className="search">
-      <div className={`search__container ${isExpanded ? 'expanded' : ''}`}>
-        <GlobalSearch 
+      <div className={`search__container ${isExpanded ? 'expanded' : ''}`}>      
+        <Globe 
           size="20" 
           className="search__icon"
           color="currentColor" 
@@ -42,6 +45,7 @@ const Search = ({ onSearch, recentSearches = [] }) => {
           onKeyDown={handleKeyDown}
           onFocus={() => setIsExpanded(true)}
         />
+        
         {searchQuery && (
           <>
             <button 
@@ -54,7 +58,7 @@ const Search = ({ onSearch, recentSearches = [] }) => {
               className="search__button"
               onClick={handleSearch}
             >
-              <ArrowRight />
+              <MoveRight />
             </button>
           </>
         )}

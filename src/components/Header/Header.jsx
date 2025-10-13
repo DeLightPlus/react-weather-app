@@ -13,7 +13,8 @@ const Header = ({
   setTempUnits, 
   setShowTermsOfService,
   onCurrentLocation,
-  isLoadingLocation
+  isLoadingLocation,
+  isAtHero
 }) => {
   const [openSettings, setOpenSettings] = useState(false);
   const curDate = getCurrentDate();
@@ -64,29 +65,31 @@ const Header = ({
   return (
     <header className="header">
       <div className="header__brand">
-        <h2 className="header__title"><Cloudy/> AuroraCast</h2>
-        <span className="header__datetime">
-          {hasCurrentLocation ? (
-            <>
-              <LocateFixed size={14} /> {cleanCityName(currentLocation.cityName)}
-              {" "}
-              <span className="header__temp">{temperature}</span>
-            </>
-          ) : defaultLocation ? (
-            <>
-              <MapPin size={14} /> {cleanCityName(defaultLocation.cityName)}
-            </>
-          ) : (
-            <>
-              <MapPin size={14} /> "No Location Set"
-              {" "}
-              <span className="header__temp">{temperature}</span>
-            </>
-          )}
-          <br />
-          <Clock size={12} /> {curDate.time} <br />
-          <Calendar size={12} /> {curDate.day}
-        </span>
+        <h2 className="header__title"><Cloudy/> <span>Aurora</span>Cast </h2>
+        {!isAtHero && (
+          <span className="header__datetime">
+            {hasCurrentLocation ? (
+              <>
+                <LocateFixed size={14} /> {cleanCityName(currentLocation.cityName)}
+                {" "}
+                <span className="header__temp">{temperature}</span>
+              </>
+            ) : defaultLocation ? (
+              <>
+                <MapPin size={14} /> {cleanCityName(defaultLocation.cityName)}
+              </>
+            ) : (
+              <>
+                <MapPin size={14} /> "No Location Set"
+                {" "}
+                <span className="header__temp">{temperature}</span>
+              </>
+            )}
+            <br />
+            
+            <Calendar size={12} /> {curDate.day}
+          </span>
+        )}
       </div>
 
       <button 
